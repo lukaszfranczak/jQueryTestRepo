@@ -1,0 +1,8 @@
+JQUERY
+
+można wyszukiwać za pomocą selektorów lub funkcji jquery
+
+attr() pobiera wartosc z htmla
+val() pobiera wartosc ktora zostala wpisana
+
+
