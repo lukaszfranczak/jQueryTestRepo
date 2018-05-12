@@ -1,5 +1,5 @@
 $(document).ready(function () {
-   // console.log('test');
+    // console.log('test');
 
     var barButtons = $('[class*=changeBar]');
     console.log(barButtons);
@@ -14,17 +14,20 @@ $(document).ready(function () {
         var clickedBarId = $(this).data('bar');
         // console.log(clickedBarWidth);
 
+        // OPCJA 1
+
         // barProgress.each(function(){
-        //     if (barProgress.attr("id") === clickedBarId) {
-        //     console.log(clickedBarId);
+        //     if ($(this).attr("id") === clickedBarId) {
+        //     // console.log(clickedBarId);
+        //         $(this).removeClass();
+        //         $(this).addClass(['progress-bar', clickedBarColor]).css('width', clickedBarWidth);
         //     }
         // });
 
+        // OPCJA 2
 
-        // barProgress.find(clickedBarId).addClass(clickedBarColor).css('width', clickedBarWidth);
-        // barProgress.find(clickedBarId).addClass(clickedBarColor);
-        // console.log(barProgress.find('#clickedBarId'));
+        barProgress.filter('#'+clickedBarId).removeClass(['blue', 'orange', 'green']).addClass(clickedBarColor).animate({width: clickedBarWidth});
 
-        });
+    });
 
 });
