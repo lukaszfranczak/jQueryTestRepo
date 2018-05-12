@@ -1,10 +1,18 @@
-.slider {
-  height: 250px;
+.slider{
+  height: 200px; /* zmiana z 250 na 200 bo przy 250 widac czesc 2 obrazka */
+  width: 400px;
+  overflow: hidden;
 }
 
-.slider ul {
+.slider ul{
+  position: relative;
   list-style: none;
+  width: 3228px;
+  margin: 0;
+  padding: 0;
+  right: 404px;
 }
 
-.slider li {
+.slider li{
+  display: inline-block;
 }
