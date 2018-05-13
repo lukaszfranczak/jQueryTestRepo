@@ -14,19 +14,11 @@ $(document).ready(function () {
         var clickedBarId = $(this).data('bar');
         // console.log(clickedBarWidth);
 
-        // OPCJA 1
-
-        // barProgress.each(function(){
-        //     if ($(this).attr("id") === clickedBarId) {
-        //     // console.log(clickedBarId);
-        //         $(this).removeClass();
-        //         $(this).addClass(['progress-bar', clickedBarColor]).css('width', clickedBarWidth);
-        //     }
-        // });
-
-        // OPCJA 2
-
-        barProgress.filter('#'+clickedBarId).removeClass(['blue', 'orange', 'green']).addClass(clickedBarColor).animate({width: clickedBarWidth});
+        barProgress
+            .filter('#'+clickedBarId)
+            .removeClass(['blue', 'orange', 'green'])
+            .addClass(clickedBarColor)
+            .animate({width: clickedBarWidth});
 
     });
 
