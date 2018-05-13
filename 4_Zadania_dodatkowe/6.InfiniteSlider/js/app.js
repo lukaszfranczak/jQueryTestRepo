@@ -30,33 +30,33 @@ $(document).ready(function () {
             elementUl.css('right', 0);
         }
         // console.log(visibleImageIndex);
-        elementUl.animate({
+        elementListLi.animate({
             'right': imageWidth*visibleImageIndex,
         },
             {
             complete: function() {
-                visibleImageIndex++;
+                visibleImageIndex++;            // spróbować z if - pytanie jednak nadal jak ogarnąć tę sekwencję
             }
         });
 
     });
 
-    elementPrevButton.on('click', function () {
-        if (visibleImageIndex<0) {
-            visibleImageIndex=6;
-            elementUl.css('right', '2424px');
-        }
-        // console.log(visibleImageIndex);
-        elementUl.animate({
-                'right': imageWidth*visibleImageIndex,
-            },
-            {
-                complete: function() {
-                    visibleImageIndex--;
-                }
-            });
-
-    });
+    // elementPrevButton.on('click', function () {
+    //     if (visibleImageIndex<0) {
+    //         visibleImageIndex=6;
+    //         elementUl.css('right', '2424px');
+    //     }
+    //     // console.log(visibleImageIndex);
+    //     elementUl.animate({
+    //             'right': imageWidth*visibleImageIndex,
+    //         },
+    //         {
+    //             complete: function() {
+    //                 visibleImageIndex--;
+    //             }
+    //         });
+    //
+    // });
 
 
 });
