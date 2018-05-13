@@ -10,9 +10,11 @@
   width: 3228px;
   margin: 0;
   padding: 0;
-  right: 404px;
 }
 
 .slider li{
   display: inline-block;
 }
+
+
+/*Obecnie dla ul ustawione jest width na szerokosc wszystkich obrazkow a tak tez nie mialo byc*/
