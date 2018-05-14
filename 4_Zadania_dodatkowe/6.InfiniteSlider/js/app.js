@@ -11,7 +11,7 @@ $(document).ready(function () {
     var elementUl = $('ul');
     // console.log(elementUl);
 
-    var visibleImageIndex = 0;
+    var visibleImageIndex = 1;
     var imageWidth = 404;
     // console.log(visibleImageIndex, imageWidth);
 
@@ -22,41 +22,50 @@ $(document).ready(function () {
     elementUl.append(firstElement);
     elementUl.prepend(lastElement);
 
-    // O ile wydawało się, że to poniżej działa to już przy przycisku prev jest totalny bajzel
+
+    function moveRight() {
+        visibleImageIndex++;
+        elementUl.animate({
+                'right': imageWidth * visibleImageIndex,
+            },
+            {
+                complete: function () {
+                    if (visibleImageIndex > 6) {
+                        visibleImageIndex = 1;
+                        elementUl.css('right', 404);
+                        // clearInterval(interval);
+                    }
+                }
+            });
+    }
+
+    function moveLeft() {
+        elementUl.animate({
+                'right': imageWidth * visibleImageIndex,
+            },
+            {
+                complete: function () {
+                    if (visibleImageIndex < 1) {
+                        visibleImageIndex = 6;
+                        elementUl.css('right', 2828);
+                        // clearInterval(interval);
+                    }
+                }
+            });
+        visibleImageIndex--;
+    }
+
+    var interval;
 
     elementNextButton.on('click', function () {
-        if (visibleImageIndex>6) {
-            visibleImageIndex=0;
-            elementUl.css('right', 0);
-        }
-        // console.log(visibleImageIndex);
-        elementListLi.animate({
-            'right': imageWidth*visibleImageIndex,
-        },
-            {
-            complete: function() {
-                visibleImageIndex++;            // spróbować z if - pytanie jednak nadal jak ogarnąć tę sekwencję
-            }
-        });
-
+        clearInterval(interval);
+        interval = setInterval(moveRight, 1000);
     });
 
-    // elementPrevButton.on('click', function () {
-    //     if (visibleImageIndex<0) {
-    //         visibleImageIndex=6;
-    //         elementUl.css('right', '2424px');
-    //     }
-    //     // console.log(visibleImageIndex);
-    //     elementUl.animate({
-    //             'right': imageWidth*visibleImageIndex,
-    //         },
-    //         {
-    //             complete: function() {
-    //                 visibleImageIndex--;
-    //             }
-    //         });
-    //
-    // });
+    elementPrevButton.on('click', function () {
+        clearInterval(interval);
+        interval = setInterval(moveLeft, 1000);
+    });
 
 
 });
