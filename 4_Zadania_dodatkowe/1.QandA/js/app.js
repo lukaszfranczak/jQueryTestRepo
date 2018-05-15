@@ -1,12 +1,6 @@
 $(document).ready(function () {
-   // console.log('test');
-    var elementListH1 = $('h1');
-    var elementListP = $('p');
-    // console.log(elementListH1, elementListP);
-
-    elementListH1.on('click', function () {
-        // console.log('h1 click');
-        elementListP.hide();
+    $('h1').on('click', function () {
+        $('p').hide();
         $(this).next().toggle();
     })
 });

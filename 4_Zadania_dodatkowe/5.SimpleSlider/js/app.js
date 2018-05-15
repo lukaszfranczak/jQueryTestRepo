@@ -1,41 +1,34 @@
 $(document).ready(function () {
-   // console.log('test');
+    // var elementListLi = $('li');
 
-    var elementPrevButton = $('#prevPicture');
-    var elementNextButton = $('#nextPicture');
-    // console.log(elementPrevButton, elementNextButton);
-
-    var elementListLi = $('li');
-    // console.log(elementListLi);
-
-    var elementUl = $('ul');
+    var $ul = $('ul');
 
     var visibleImageIndex = 0;
-    var imageWidth = 404;
-    // console.log(visibleImageIndex, imageWidth);
+    var imageWidth = $('img').width()+4;
 
-    elementNextButton.on('click', function () {
+    // Next picture switch
+
+    $('#nextPicture').on('click', function () {
         visibleImageIndex++;
         if (visibleImageIndex>5) {
             visibleImageIndex=1;
         }
-        // console.log(visibleImageIndex);
-        elementUl.animate({
+        $ul.animate({
             'right': imageWidth*visibleImageIndex
         });
     });
 
-    elementPrevButton.on('click', function () {
+    // Previous picture switch
+
+    $('#prevPicture').on('click', function () {
         visibleImageIndex--;
         if (visibleImageIndex<0) {
             visibleImageIndex=5;
         }
-        // console.log(visibleImageIndex);
-        elementUl.animate({
+        $ul.animate({
             'right': imageWidth*visibleImageIndex
         });
     })
-
 });
 
 // Problemy:

@@ -1,70 +1,64 @@
 $(document).ready(function () {
-   // console.log('test');
 
-    var elementPrevButton = $('#prevPicture');
-    var elementNextButton = $('#nextPicture');
-    // console.log(elementPrevButton, elementNextButton);
+    var $prevButton = $('#prevPicture');
+    var $nextButton = $('#nextPicture');
 
-    var elementListLi = $('li');
-    // console.log(elementListLi);
+    var $liList = $('li');
 
-    var elementUl = $('ul');
-    // console.log(elementUl);
+    var $ul = $('ul');
 
-    var visibleImageIndex = 1;
-    var imageWidth = 404;
-    // console.log(visibleImageIndex, imageWidth);
+    var visibleImageIndex = 0;
+    var imageWidth = $('img').width()+4;   // I tried with outerwidth, css(width) etc but still I have to add 4 because of the space between images; reset of all elements also didn't help
 
-    var firstElement = elementListLi.first().clone();
-    var lastElement = elementListLi.last().clone();
-    // console.log(firstElement);
-    // console.log(lastElement);
-    elementUl.append(firstElement);
-    elementUl.prepend(lastElement);
+    var $firstLi = $liList.first().clone();
+    var $lastLi = $liList.last().clone();
+    $ul.append($firstLi);
+    $ul.prepend($lastLi);
 
+    $ul.css('right', imageWidth+'px').css('width', imageWidth*8+'px');
 
-    function moveRight() {
-        visibleImageIndex++;
-        elementUl.animate({
+    function move(parameter) {
+        if (parameter===1) {
+            visibleImageIndex++;
+        }
+        $ul.animate({
                 'right': imageWidth * visibleImageIndex,
             },
             {
                 complete: function () {
-                    if (visibleImageIndex > 6) {
-                        visibleImageIndex = 1;
-                        elementUl.css('right', 404);
-                        // clearInterval(interval);
+                    if (parameter===1) {
+                        if (visibleImageIndex > $liList.length) {
+                            visibleImageIndex = 1;
+                            $ul.css('right', imageWidth);
+                        }
+                    } else if (parameter===-1) {
+                        if (visibleImageIndex < 1) {
+                            visibleImageIndex = $liList.length;
+                            $ul.css('right', imageWidth*7);
+                        }
                     }
-                }
-            });
-    }
 
-    function moveLeft() {
-        elementUl.animate({
-                'right': imageWidth * visibleImageIndex,
-            },
-            {
-                complete: function () {
-                    if (visibleImageIndex < 1) {
-                        visibleImageIndex = 6;
-                        elementUl.css('right', 2828);
-                        // clearInterval(interval);
-                    }
                 }
             });
-        visibleImageIndex--;
+        if (parameter===-1) {
+            visibleImageIndex--;
+        }
     }
 
     var interval;
 
-    elementNextButton.on('click', function () {
+    $nextButton.on('click', function () {
         clearInterval(interval);
-        interval = setInterval(moveRight, 1000);
+        interval = setInterval(function() {
+            move(1);
+            }, 1000);
     });
 
-    elementPrevButton.on('click', function () {
+    $prevButton.on('click', function () {
         clearInterval(interval);
-        interval = setInterval(moveLeft, 1000);
+        interval = setInterval(function() {
+            move(-1);
+            }, 1000);
     });
 
 

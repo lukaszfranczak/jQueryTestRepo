@@ -1,8 +1,5 @@
 $(document).ready(function () {
 
-    var elementScene = $('.scene');
-    var elementList = $('.element');
-
     var oldMousePositionX = 0;
     var oldMousePositionY = 0;
 
@@ -12,7 +9,7 @@ $(document).ready(function () {
     var mouseMoveX = 0;
     var mouseMoveY = 0;
 
-    elementList
+    $('.element')
         .each(function() {
             $(this).css('z-index', $(this).data('z'))
         })
@@ -23,22 +20,19 @@ $(document).ready(function () {
             $(this).css('top', $(this).data('y'))
         });
 
-    elementScene.on('mouseenter', function (event) {
+    $('.scene').on('mouseenter', function (event) {
         oldMousePositionX = event.offsetX;
         oldMousePositionY = event.offsetY;
-        // console.log(oldMousePositionX, oldMousePositionY);
     });
 
-    elementScene.on('mousemove', function (event) {
+    $('.scene').on('mousemove', function (event) {
         currentMousePositionX = event.offsetX;
         currentMousePositionY = event.offsetY;
-        // console.log(currentMousePositionX, currentMousePositionY);
 
         mouseMoveX = currentMousePositionX - oldMousePositionX;
         mouseMoveY = currentMousePositionY - oldMousePositionY;
-        // console.log(mouseMoveX, mouseMoveY);
 
-        elementList
+        $('.element')
             .each(function() {
                 $(this).css('left', $(this).data('x')+mouseMoveX*$(this).data('speed'))
             })

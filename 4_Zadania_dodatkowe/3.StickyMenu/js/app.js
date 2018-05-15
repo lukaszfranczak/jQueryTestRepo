@@ -1,26 +1,23 @@
 $(document).ready(function () {
-   // console.log('test');
+    var $menu = $('.menu');
+    var $navPosition = $('nav').position().top;
 
-    var elementNav = $('nav');
-    var elementMenu = $('.menu');
-    var elementNavPosition = elementNav.position().top;
-    // console.log(elementNav, elementMenu);
-    // console.log(elementNavPosition);
+    // Fix on scroll
 
     $(window).on('scroll', function () {
-        // console.log('test');
-        // console.log(elementNavPosition);
         var topPosition = $(this).scrollTop();
-        if (topPosition>elementNavPosition) {
-            elementMenu.addClass('sticky');
+        if (topPosition>$navPosition) {
+            $menu.addClass('sticky');
         } else {
-            elementMenu.removeClass('sticky');
+            $menu.removeClass('sticky');
         }
     });
 
+    // Change fix setup on window resize
+
     $(window).on('resize', function () {
         // if (elementMenu.hasClass('sticky')) {
-        elementNavPosition = elementNav.position().top;
+        $navPosition = $('nav').position().top;
         // } else {
         //     elementMenuPosition = elementMenu.position().top;
         // }
